@@ -1,4 +1,6 @@
 from flask import Flask
+from flash_cards import app
+
 application = Flask(__name__)
 
 @application.route("/")
@@ -7,4 +9,5 @@ def hello():
 
 if __name__ == "__main__":
     application.run()
+
 
