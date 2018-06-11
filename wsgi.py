@@ -1,9 +1,5 @@
-from flask import Flask
-application = Flask(__name__)
-
-@application.route("/")
-def hello():
-    return "Hello World!"
+from flash_cards import app
 
 if __name__ == "__main__":
-    application.run()
+    app.run()
+
