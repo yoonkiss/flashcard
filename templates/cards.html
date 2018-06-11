@@ -11,6 +11,12 @@
                 <label for="code" class="toggleButton btn btn-default btn-lg">Code &nbsp;
                     <input type="radio" name="type" value="2" id="code"/>
                 </label>
+                <label for="eng" class="toggleButton btn btn-default btn-lg">Words &nbsp;
+                    <input type="radio" name="type" value="3" id="eng"/>
+                </label>
+                <label for="ielts" class="toggleButton btn btn-default btn-lg">Ielts &nbsp;
+                    <input type="radio" name="type" value="4" id="ielts"/>
+                </label>
             </div>
             <div class="form-group fieldFront">
                 <label for="front">Front of Card</label>
@@ -37,6 +43,8 @@
         <a href="{{ url_for('filter_cards', filter_name="all") }}" class="btn btn-{{ "primary" if filter_name == "all" else "default" }}">All</a>
         <a href="{{ url_for('filter_cards', filter_name="general") }}" class="btn btn-{{ "primary" if filter_name == "general" else "default" }}">General</a>
         <a href="{{ url_for('filter_cards', filter_name="code") }}" class="btn btn-{{ "primary" if filter_name == "code" else "default" }}">Code</a>
+        <a href="{{ url_for('filter_cards', filter_name="eng") }}" class="btn btn-{{ "primary" if filter_name == "eng" else "default" }}">Words</a>
+        <a href="{{ url_for('filter_cards', filter_name="ielts") }}" class="btn btn-{{ "primary" if filter_name == "ielts" else "default" }}">Ielts</a>
         <a href="{{ url_for('filter_cards', filter_name="known") }}" class="btn btn-{{ "primary" if filter_name == "known" else "default" }}">Known</a>
         <a href="{{ url_for('filter_cards', filter_name="unknown") }}" class="btn btn-{{ "primary" if filter_name == "unknown" else "default" }}">Unknown</a>
     </div>
@@ -54,7 +62,8 @@
                     <h4>
                         {{ card.front }}
                     </h4>
-                    {% if card.type == 1 %}
+                    <!--- FIXME: adhoc!! -->
+                    {% if card.type != 2%}
                         {{ card.back|replace("\n", "<br />")|safe }}
                     {% else %}
                         <pre><code>{{ card.back|escape }}</code></pre>
