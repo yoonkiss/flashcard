@@ -1,6 +1,6 @@
-from flash_cards import app
+from flash_cards import application
 
 if __name__ == "__main__":
-    app.run()
+    application.run()
 
 

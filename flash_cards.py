@@ -3,10 +3,10 @@ import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
     render_template, flash
 
-app = Flask(__name__)
-app.config.from_object(__name__)
+application = Flask(__name__)
+application.config.from_object(__name__)
 
-@app.route('/')
+@application.route('/')
 def index():
     if session.get('logged_in'):
         return redirect(url_for('general'))
@@ -14,13 +14,13 @@ def index():
         return redirect(url_for('login'))
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@application.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['username'] != app.config['USERNAME']:
+        if request.form['username'] != application.config['USERNAME']:
             error = 'Invalid username or password!'
-        elif request.form['password'] != app.config['PASSWORD']:
+        elif request.form['password'] != application.config['PASSWORD']:
             error = 'Invalid username or password!'
         else:
             session['logged_in'] = True
@@ -29,7 +29,7 @@ def login():
     return render_template('login.html', error=error)
 
 
-@app.route('/logout')
+@application.route('/logout')
 def logout():
     session.pop('logged_in', None)
     flash("You've logged out")
@@ -37,4 +37,4 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    application.run(host='0.0.0.0')
